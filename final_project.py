@@ -113,21 +113,7 @@ if yard is None:
     print "The address you entered does not match any records."
     
 
-# multiplies factors and square footage
-##price = (yard.sq_ft * .01) * (distance) * (slope) * (shade)
-##if price == 0:
-##    print "This yard may not be cost effective to treat"
-##else:
-##    print price
-        
 
-
-# create text file, then write a report to it
-##report = open("report.txt", "w")
-##
-##report.write("The property at {} should be priced at ${}.\n".format(add, price))
-##
-##report.close()
 
 
 
