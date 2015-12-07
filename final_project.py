@@ -5,7 +5,7 @@ Fall 2015
 Final Project
 """
 from collections import namedtuple
-
+from datetime import datetime
 
 def get_slope(slope):
     """creates a factor based on the slope of the yard"""
@@ -93,25 +93,41 @@ for line in data:
         shade = get_shade(float(shade))
         distance = get_distance(float(distance))
         yard = Yard(address, sq_ft, turf_type, slope, shade, distance)
+        price = (yard.sq_ft * .01) * (distance) * (slope) * (shade)
+        if price == 0:
+            report = open("report.txt", "a")
+            report.write("{} - The property at {} may not be cost effective to treat.\n".format(datetime.now().isoformat(' ').split('.')[0], add))
+            report.close()
+            print "This yard may not be cost effective to treat"
+        else:
+            report = open("report.txt", "a")
+            report.write("{} - The property at {} should be priced at ${}.\n".format(datetime.now().isoformat(' ').split('.')[0],
+                                                                                     add, ("{0:.2f}".format(price))))
+            report.close()
+            print "$" + ("{0:.2f}".format(price))
 
-       
+if yard is None:
+    report = open("report.txt", "a")
+    report.write("{} - Address not found\n".format(datetime.now().isoformat(' ').split('.')[0]))
+    report.close()
+    print "The address you entered does not match any records."
+    
 
 # multiplies factors and square footage
-price = (yard.sq_ft * .01) * (distance) * (slope) * (shade)
-if price == 0:
-    print "This yard may not be cost effective to treat"
-else:
-    print price
+##price = (yard.sq_ft * .01) * (distance) * (slope) * (shade)
+##if price == 0:
+##    print "This yard may not be cost effective to treat"
+##else:
+##    print price
         
-if yard is None:
-    print "Please check your address."
+
 
 # create text file, then write a report to it
-report = open("report.txt", "w")
-
-report.write("The property at {} should be priced at ${}.".format(add, price))
-
-report.close()
+##report = open("report.txt", "w")
+##
+##report.write("The property at {} should be priced at ${}.\n".format(add, price))
+##
+##report.close()
 
 
 
