@@ -42,7 +42,8 @@ def get_shade(shade):
     return shadefactor
 
 def get_distance(distance):
-    """creates a factor based on the distance that the address is away from the shop"""
+    """creates a factor based on the distance that the address is away
+from the shop"""
     if distance <= 5:
         distancefactor = 1
     elif distance > 5 and distance <= 10:
@@ -67,7 +68,7 @@ def get_distance(distance):
         distancefactor = 0
     return distancefactor
 
-
+# makes named tuple (make it easier to keep up with all data (header)
 Yard = namedtuple('Yard',
                   ['address', 'sq_ft', 'turf_type', 'slope', 'shade', 'distance'],
                   )
@@ -104,6 +105,13 @@ else:
         
 if yard is None:
     print "Please check your address."
+
+# create text file, then write a report to it
+report = open("report.txt", "w")
+
+report.write("The property at {} should be priced at ${}.".format(add, price))
+
+report.close()
 
 
 
